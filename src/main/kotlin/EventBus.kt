@@ -25,15 +25,12 @@ class EventBusImpl(
 
     @OptIn(DelicateCoroutinesApi::class)
     override suspend fun raiseEvent(event: Event) {
-        println("EventBusImpl: raiseEvent called with event: $event")
         when (event) {
             is AggregateEvent -> {
                 GlobalScope.launch {
                     event.events.forEach { e ->
-                        println("EventBusImpl: Emitting event: $e")
                         _events.emit(e)
                         if (event.delayInMillis > 0) {
-                            println("EventBusImpl: Adding delay of ${event.delayInMillis}ms before emitting the next event")
                             delay(event.delayInMillis)
                         }
                     }
@@ -41,7 +38,6 @@ class EventBusImpl(
             }
 
             else -> {
-                println("EventBusImpl: Emitting single event: $event, bus: $this")
                 emitSafely(event)
             }
         }
@@ -50,16 +46,12 @@ class EventBusImpl(
     private suspend fun emitSafely(event: Event) {
         try {
             val result = _events.tryEmit(event) // Use tryEmit instead of emit to avoid suspension
-            if (result) {
-                println("EventBusImpl: Emitted event: $event, bus: $this")
-            } else {
-                println("EventBusImpl: Failed to emit event (buffer full): $event, bus: $this")
+            if (!result) {
                 // Fallback to regular emit if tryEmit fails
                 _events.emit(event)
-                println("EventBusImpl: Emitted event with fallback: $event, bus: $this")
             }
         } catch (e: Exception) {
-            println("EventBusImpl: exception while emitting event: $e")
+            // Handle exception silently
         }
     }
 }
