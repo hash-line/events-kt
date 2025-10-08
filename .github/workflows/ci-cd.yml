@@ -103,7 +103,7 @@ jobs:
       run: ./gradlew publish
       env:
         USERNAME: ${{ github.actor }}
-        TOKEN: ${{ secrets.TOKEN_PACKAGES || secrets.GITHUB_TOKEN }}
+        TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
     - name: Publish to Maven Central (optional)
       if: env.MAVEN_CENTRAL_TOKEN != ''
