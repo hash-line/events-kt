@@ -3,6 +3,9 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
     `maven-publish`
     `java-library`
+
+    //id("com.vanniktech.maven.publish") version "0.34.0"
+
 }
 
 group = "co.hashline"
