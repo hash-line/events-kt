@@ -27,6 +27,7 @@ dependencies {
     implementation(libs.jetbrains.kotlinx.datetime)
 
     testImplementation(kotlin("test"))
+    testImplementation(libs.jetbrains.kotlinx.coroutines.test)
 }
 
 tasks.test {
