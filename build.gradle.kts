@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "co.hashline"
-version = "1.1"
+version = "0.9"
 
 repositories {
     mavenCentral()
@@ -33,14 +33,6 @@ tasks.test {
 }
 kotlin {
     jvmToolchain(21)
-}
-
-// Signing configuration
-signing {
-    useInMemoryPgpKeys(
-        System.getenv("SIGNING_KEY"),
-        System.getenv("SIGNING_PASSWORD")
-    )
 }
 
 // Maven Central publishing configuration
