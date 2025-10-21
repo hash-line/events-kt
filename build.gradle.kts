@@ -2,7 +2,7 @@ plugins {
     kotlin("jvm") version "2.0.21"
     alias(libs.plugins.kotlin.serialization)
     `java-library`
-    `signing`
+    signing
     id("com.vanniktech.maven.publish") version "0.34.0"
 }
 
@@ -41,20 +41,6 @@ signing {
         System.getenv("SIGNING_KEY"),
         System.getenv("SIGNING_PASSWORD")
     )
-}
-
-// Maven Central repository configuration
-publishing {
-    repositories {
-        maven {
-            name = "mavenCentral"
-            url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
-            credentials {
-                username = System.getenv("MAVEN_CENTRAL_USERNAME")
-                password = System.getenv("MAVEN_CENTRAL_PASSWORD")
-            }
-        }
-    }
 }
 
 // Maven Central publishing configuration
