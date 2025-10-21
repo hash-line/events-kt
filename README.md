@@ -256,7 +256,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ### 1.0.0
 - Initial release
-- Basic event bus functionality
-- Aggregate event support
-- Error handling
-- Replay cache support
+- Coroutine-based event bus with Flow support
+- Type-safe event system with built-in event types
+- Replay cache support for event history
+- Aggregate events with configurable delays
+- Error handling with ErrorEvent
+- Non-blocking event emission using tryEmit
+- Full Kotlinx Serialization support
+- Comprehensive test suite
