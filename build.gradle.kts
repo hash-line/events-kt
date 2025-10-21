@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "co.hashline"
-version = "0.9"
+version = "1.0"
 
 repositories {
     mavenCentral()
