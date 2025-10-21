@@ -16,6 +16,17 @@ A lightweight, coroutine-based event bus library for Kotlin applications. Built 
 ### Gradle (Kotlin DSL)
 
 ```kotlin
+repositories {
+    mavenCentral()
+    maven {
+        url = uri("https://maven.pkg.github.com/hash-line/events-kt")
+        credentials {
+            username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
+            password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
+        }
+    }
+}
+
 dependencies {
     implementation("co.hashline:events-kt:1.0")
 }
@@ -24,6 +35,17 @@ dependencies {
 ### Gradle (Groovy)
 
 ```groovy
+repositories {
+    mavenCentral()
+    maven {
+        url 'https://maven.pkg.github.com/hash-line/events-kt'
+        credentials {
+            username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+            password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+        }
+    }
+}
+
 dependencies {
     implementation 'co.hashline:events-kt:1.0'
 }
@@ -32,11 +54,45 @@ dependencies {
 ### Maven
 
 ```xml
-<dependency>
-    <groupId>co.hashline</groupId>
-    <artifactId>events-kt</artifactId>
-    <version>1.0</version>
-</dependency>
+<repositories>
+    <repository>
+        <id>github</id>
+        <name>GitHub Packages</name>
+        <url>https://maven.pkg.github.com/hash-line/events-kt</url>
+    </repository>
+</repositories>
+
+<dependencies>
+    <dependency>
+        <groupId>co.hashline</groupId>
+        <artifactId>events-kt</artifactId>
+        <version>1.0</version>
+    </dependency>
+</dependencies>
+```
+
+### Authentication
+
+To access GitHub Packages, you need to authenticate. Create a Personal Access Token with `read:packages` scope and set it up:
+
+**Option 1: Environment Variables**
+```bash
+export USERNAME=your-github-username
+export TOKEN=your-github-token
+```
+
+**Option 2: Gradle Properties**
+Create `~/.gradle/gradle.properties`:
+```properties
+gpr.user=your-github-username
+gpr.key=your-github-token
+```
+
+**Option 3: Project-level gradle.properties**
+Create `gradle.properties` in your project root:
+```properties
+gpr.user=your-github-username
+gpr.key=your-github-token
 ```
 
 ## Quick Start

@@ -1,4 +1,5 @@
 import kotlinx.serialization.Serializable
+import java.util.UUID
 
 /**
  * Represents a base model for an event in the application.
@@ -10,7 +11,7 @@ interface Event {
     /**
      *  A unique identifier for the event.
      */
-    val id: String get() = "123131"//Uuid.random().toString()
+    val id: String get() = UUID.randomUUID().toString()
 }
 
 
