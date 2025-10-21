@@ -2,6 +2,7 @@ plugins {
     kotlin("jvm") version "2.0.21"
     alias(libs.plugins.kotlin.serialization)
     `java-library`
+    `signing`
     id("com.vanniktech.maven.publish") version "0.34.0"
 }
 
@@ -32,6 +33,14 @@ tasks.test {
 }
 kotlin {
     jvmToolchain(21)
+}
+
+// Signing configuration
+signing {
+    useInMemoryPgpKeys(
+        System.getenv("SIGNING_KEY"),
+        System.getenv("SIGNING_PASSWORD")
+    )
 }
 
 // Maven Central publishing configuration
