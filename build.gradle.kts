@@ -40,6 +40,9 @@ mavenPublishing {
     signAllPublications()
 
     coordinates("co.hashline", "events-kt", version.toString())
+    
+    // Enable Maven Central publishing
+    publishToMavenCentral()
 
     pom {
         name = "Events-KT"
@@ -66,11 +69,4 @@ mavenPublishing {
             developerConnection = "scm:git:ssh://github.com/hash-line/events-kt.git"
         }
     }
-}
-
-// Task for manual Maven Central publication
-tasks.register("publishToMavenCentral") {
-    group = "publishing"
-    description = "Publishes the library to Maven Central"
-    dependsOn("publishAllPublicationsToMavenCentralRepository")
 }
